@@ -1,6 +1,4 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/CibnTZFQ)
-
-# Project 2 Report
+# Game Report
 
 Read the [project 2
 specification](https://github.com/COMP30019/Project-2-Specification) for

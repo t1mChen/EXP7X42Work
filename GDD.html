@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GDD.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="game-design-document">Game Design Document</h1>
+<h3 id="table-of-contents">Table of contents</h3>
+<ul>
+<li><a href="#project">Project Name</a></li>
+<li><a href="#game-overview">Game Overview</a></li>
+<li><a href="#story-and-narrative">Story and Narrative</a></li>
+<li><a href="#gameplay-mechanics">Gameplay Mechanics</a></li>
+<li><a href="#levels-and-world-design">Levels and World Design</a></li>
+<li><a href="#art-and-audio">Art and Audio</a></li>
+<li><a href="#user-interface-ui">User Interface (UI)</a></li>
+<li><a href="#technology-and-tools">Technology and Tools</a></li>
+<li><a href="#team-communication-timelines-and-task-assignment">Team Communication, Timelines and Task Assignment</a></li>
+<li><a href="#possible-challenges">Possible Challenges</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<h3 id="project">Project</h3>
+<p align="center">
+        <img src="Images/thumbnail.png" width="500">
+        </p>
+<p align="center"><em>Game Play Screenshot.</em></p>
+<p><em>Exp-7X42</em>  is a 5-min timed survival first-person shooting (FPS) game set in a virtual world.
+The operators of the experiment is scientists from the real world, while the player is a test participant by the directors
+of this experiment. The brain of the player is connected to machines that simulate the test environment, so that their
+reactions can be examined by scientists. They have established a standard. Only those who are able to survive for more
+than 5 minutes are considered as successful, which means they will remain alive and ready to participate in the future
+experiments, otherwise they will be abandoned and executed with death if they fail. You, as one of object being tested,
+is required to survive from this 5 minutes simulation hosted by immortal scientists, while seeking for resources and avoid
+getting killed by the enemies. The background of the game will be revealed gradually as the game progresses, which leaves
+space of imagination for the players themselves to consider.</p>
+<p>More information are explained in the background story.</p>
+<h3 id="game-overview">Game Overview</h3>
+<h4 id="core-concept">Core Concept:</h4>
+<p>The game is based in a chemical plant. The player is a “guinea pig” of an immoral organisation. The main goal for the player is to survive for 5 minutes under the attack of enemies, meanwhile searching for resources to stay alive.</p>
+<p>The background story is inspired by the novel Hunger Game, written by Suzanne Collins, where the main characters are put into a dangerous environment by an organisation and they need to fight for survival.</p>
+<p align="center">
+        <img src="Images/game-world-prototype.png" width="500">
+        </p>
+<p align="center"><em>Game World Prototype.</em></p>
+<h4 id="genre">Genre:</h4>
+<p>This is a single-player, First-Person Shooter (FPS), survival game.</p>
+<p>A reference game in this genre is <em>bioshock</em>.</p>
+<h4 id="target-audience">Target Audience:</h4>
+<p>The target audiences are between the age of 15-30 who enjoys: slight-horror, slight-mystery, action game, FPS, 3D game experience, sci-fi theme.</p>
+<h4 id="unique-selling-points-usps">Unique Selling Points (USPs):</h4>
+<p>There are minimal explicit explanations of the background story given to the player in the game. However, there are little pieces of writings (e.g. notes, diary pages, marks on the wall) that the player might see or find when exploring the world. These can give the player some hints or implications of why he/she is in this place (hints might include fragmented information about the immoral organisation, or news articles about the experiment that the organisation is doing, or even the background story of the player).</p>
+<p>Players can build up their understanding about the background story based on the writings they find, but it should be quite open-ended so different players can have different interpretations about the background story; or they might have different understandings the second time they play the game.</p>
+<p>Further information and usage regarding this USP's performance within the game play will be explained further in this document.</p>
+<p align="center">
+  <img src="Images/01-clues.png" width="300">
+</p>
+<p align="center"><em>hidden story.[1]</em></p>
+<h3 id="story-and-narrative">Story and Narrative</h3>
+<h4 id="background">Background:</h4>
+<p>Backstory and settings: In the future world, some unethical scientists are investigating the adaptability of the human brain in the cyberworld using humans as experimental subjects. Their consciousness is projected into a dangerous virtual world constructed by the scientists. Death in the virtual world means death in real life. The main character is a subject of the experiment and has to fight and survive the attack of hostile creatures in a chemical plant in the virtual world.</p>
+<p align="center">
+        <img src="Images/02-background.png" width="300">
+        </p>
+<p align="center"><em>background concept.[2]</em></p>
+<h4 id="conflict">Conflict:</h4>
+<p>The main conflict is between the player and the hostile creatures.</p>
+<h4 id="progression">Progression:</h4>
+<p>There is not a dominant story component that is enforced on the player to experience. However, clues of the background story are hidden in the surroundings and players can choose to unfold the plot based on their interests.</p>
+<p align="center">
+        <img src="Images/gameplay/usp.gif" width="500">
+        </p>
+<p align="center"><em>USP - Notes.</em></p>
+<h4 id="notes-usp">Notes (USP):</h4>
+<p>We have 15 pieces of notes that is organised and located within the game world, while each piece of notes contain a little word to reveal about the background story. Here is the list of all notes:</p>
+<blockquote>
+<p>Experiment Report 344:</p>
+<blockquote>
+<p>Topic: Self adaptive Evolution
+Object: sample 600
+There is no evidence of evolution as we adjust the difficulty towards maximum
+Status: Failed
+Result: Executed
+Conclusion: Further experiments need to be performed
+Suggestion: expand the environment and perform more sample tests
+Perfomance Details: the s... (Deleted)</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>7fuw032t()%#)@#H%#(Memory Leak__</p>
+<blockquote>
+<p>New Message:
+Time: 12:24
+Today, the first tested object has passed the test
+It is a miracle, we won't tell it anything
+Save yourself in the real world</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>There is no exit to this place unless you escape your mind...</p>
+</blockquote>
+<blockquote>
+<p>Do not trap yourself, save yourself</p>
+</blockquote>
+<blockquote>
+<p>Leave from here after the 5:00</p>
+<blockquote>
+<p>don't corporate here</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>You cannot kill the boss,</p>
+<blockquote>
+<p>It is programmed to kill you</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>You are the real one being tested...</p>
+</blockquote>
+<blockquote>
+<p>Profile:7X42</p>
+<blockquote>
+<p>Agility: 20
+ecpected chance: 0.01%
+difficulty: highest
+... in the previous round, 7X42 has been performed with excellency</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>We must stop it from taking out the knowledge...</p>
+<blockquote>
+<p>This factory has been built with a program from our supercomputers</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>2:30 is the final limit, we must shut it down</p>
+</blockquote>
+<blockquote>
+<p>We don't want to let it know the facts</p>
+</blockquote>
+<blockquote>
+<p>We need to expand our )(&amp;#$(%(#&amp;%, and secretly monitor this sample
+and to program a even more hostile creature to &amp;<em>R#((@#NRNJ
+(This message is confidential)
+two T</em>*(Y#(#)@$)(%&amp;#)</p>
+</blockquote>
+<blockquote>
+<p>The boss will call out all minotaurs</p>
+</blockquote>
+<blockquote>
+<p>Make sure you have enough resources to save yourself</p>
+</blockquote>
+<h4 id="characters">Characters:</h4>
+<h5 id="player">Player</h5>
+<p>an experimental subject of scientists who needs to survive in the experiment</p>
+<h5 id="minotaur">Minotaur:</h5>
+<p>Normal monsters that attack player, only short-range attack.</p>
+<p>These hostile creatures have different specialties.
+Some move with faster speed, some have higher health, some have wider range for movement and attacking, some have strength in combat. Hostile creatures can only have close combats.</p>
+<p>When the player is within the attacking range of hostile creatures, the hostile creatures would attack automatically.</p>
+<p align="center">
+        <img src="Images/gameplay/minotaur.gif" width="500">
+        </p>
+<p align="center"><em>minotaur in game.</em></p>
+<h5 id="boss">Boss:</h5>
+<p>It can attack player via remote attack and range attack or normal attack.</p>
+<p align="center">
+        <img src="Images/gameplay/boss.gif" width="500">
+        </p>
+<p align="center"><em>boss in game.</em></p>
+<p>The boss can always track the player’s movement and will chase the player.</p>
+<p>When using jump attack, it is able to hurt player when performing the attack within certain range to player.</p>
+<p>When using remote attack, it will generate a blade that fly towards the player, hurting player once the blade hits.</p>
+<h3 id="gameplay-mechanics">Gameplay Mechanics</h3>
+<p align="center">
+        <img src="Images/gameplay/shoot.gif" width="500">
+        </p>
+<p align="center"><em>Shooting gameplay.</em></p>
+<h4 id="player-perspective">Player Perspective:</h4>
+<p>First-person perspective.</p>
+<p>The field of view is limited to what the character naturally sees, with the camera representing the character's eyes. Camera view can be rotated.</p>
+<p>Player character’s body is not visible on screen. However, the gun and the hand holding the gun will be visible at the right-bottom corner. Similar to the picture below:
+<p align="center">
+<img src="Images/05-perspective.png" width="300">
+</p>
+<p align="center"><em>Player View Concept.[5]</em></p></p>
+<p>Reason: Better immersive experience as the player experiences what the character sees. Also makes it easier to aim and shoot.</p>
+<p align="center">
+        <img src="Images/gameplay/reload.gif" width="500">
+        </p>
+<p align="center"><em>Reload Bullets animation.</em></p>
+<h4 id="controls">Controls:</h4>
+<p>Move mouse: rotate view, camera view direction is tied to movement of mouse</p>
+<p>W A S D: move forward, left, back and right</p>
+<p>Left click: fire the gun</p>
+<p>E: interact with object (such as notes, supply crates, etc.), only appears next to an interactable object when character is close to the object</p>
+<p>F: interact with object (collect crate items, hide notes)</p>
+<p>R: refill bullets</p>
+<p>Space: Jump</p>
+<p>Q: switch gun (only when the player is in the interactive region)</p>
+<p align="center">
+        <img src="Images/06-controls.png" width="300">
+        </p>
+<p align="center"><em>Controls Concept.</em></p>
+<h4 id="progression-game-can-be-roughly-separated-into-two-phases">Progression: Game can be roughly separated into two phases.</h4>
+<pre><code class="language-mermaid"><div class="mermaid">graph LR
+    A[Game Start] -->|Game progress begins| B(Phase 1: normal)
+    B --> |Player is still alive after 2:30| C(Phase 2: difficult)
+    B --> |Player dies| E(Player Loses)
+    C --> |Player survives after 5 min| D(Player Wins)
+    C --> |Player dies| E
+</div></code></pre>
+<h5 id="phase-1---normal">Phase 1 - normal:</h5>
+<p>Certain number of hostile creatures to be maintained the game and start wandering around the map (instantiate new when one gets killed).</p>
+<p>In this phase, player can explore the surroundings and collect supplies (bullets, healing potion, etc) from supply crates in the scene.</p>
+<p>When the player is close to a hostile creature, it will start chasing and attacking the player. Player can either escape or kill the creature with gun.</p>
+<h5 id="phase-2---difficult">Phase 2 - difficult:</h5>
+<p>A boss and a set number of new hostile creatures appear in the map.</p>
+<p>Boss begins chasing the player and has a number of attacking methods.</p>
+<p>The boss cannot be killed but only frozen (when the player shoot the boss)</p>
+<h5 id="losing-condition">Losing condition:</h5>
+<p>When the health bar is empty, the player loses
+.</p>
+<h5 id="winning-condition">Winning condition:</h5>
+<p>If the player is still surviving after 5 min, the player wins.</p>
+<h5 id="gameplay-mechanics">Gameplay Mechanics:</h5>
+<p>Limited resources: Player can loot crates and collect resources (such as bullets) to help them survive 5 minutes. However, boxes with supplies don’t respawn and bullets can run out if player don’t use them wisely.</p>
+<p align="center">
+        <img src="Images/minotaurH.png" width="500">
+        </p>
+<p align="center"><em>Minotaur getting hit by bullet.</em></p>
+<p>Player Shooting Skill: The game requires precise and responsive aiming.</p>
+<p>Fast reaction: Player has to react fast to attack signals in order to dodge attacks from all hostile creatures and the boss. Being able to skillfully survive under enemy pressure gives a sense of accomplishment.</p>
+<p>Supply crate interaction: open, close, containing resources (e.g. bullets, healing potion) , provide resources for players to progress the game.</p>
+<p>Supply crate generation: When the supply crates existing are below a specific minimum value, new crates will be generated.</p>
+<p>Structures: walls, interior settings, floors, set limitations and plot of the environment. Moving objects are unable to directly pass through</p>
+<p>Minotaurs: Their role is to stop the player from staying alive. They are able to chase and attack the player by using axes or throwing stones. They will walk separately from each other. New minotaurs will be generated when boss is out from the cage.</p>
+<p>Boss is able to throw out more minotaurs, or execute remote attack object via swiping or range attack object via jumping.</p>
+<p align="center">
+        <img src="Images/bossC.png" width="500">
+        </p>
+<p align="center"><em>Boss getting released from cage.</em></p>
+<p>Boss cage: Once the predetermined time of locking the boss is passed, the cage will rises up and release the boss.</p>
+<p>Player: The player is able to open supply crates, and kill minotaurs via shooting. A bullet will be generated. If it hits the enemy, the enemy's health will be deducted.</p>
+<p align="center">
+        <img src="Images/gameplay/unbox.gif" width="500">
+        </p>
+<p align="center"><em>Open Crate and Collect item.</em></p>
+<p>Supplies: Potions, bullets. They are located inside crates, players will equip the items automatically once opening a crate. The equipped items can be consumed by the player at any time during the game by pressing the related.</p>
+<p align="center">
+        <img src="Images/redPotion .png" width="300">
+        </p>
+<p align="center"><em>Health Potion.</em></p>
+<p>Health Potion: When the player equips health potion and uses it, it will gradually increase the health level of the player.</p>
+<p align="center">
+        <img src="Images/bluePotion.png" width="300">
+        </p>
+<p align="center"><em>Speed Up Potion.</em></p>
+<p>Speed-Up Potion: When the player uses the speed-up potion, it will increase the player's speed to a faster level and remain at the level for a certain amount of time. Once the time of the potion is reached, player's speed reset to the original level.</p>
+<p align="center">
+        <img src="Images/greenPotion.png" width="300">
+        </p>
+<p align="center"><em>Damage Potion.</em></p>
+<p>Damage Potion: When player uses the damage potion, it will increase the damage of bullets on enemies.</p>
+<p align="center">
+        <img src="Images/bulletP.png" width="300">
+        </p>
+<p align="center"><em>Bullet.</em></p>
+<p>Bullets: The bullets will be generated at shoot towards the centre of screen, calculating destination using raycast and fly towards the objects. If it hits the enemy, it will apply damage to the creature with the predetermined level of damage.</p>
+<p>Notes (USP) Interaction: The notes can be opened by the player so that they can read it, furthermore,it will provide buff to the game and bring changes to the gameplay. A random event will happened as the player closes the note and changes the game's status (e.g. The player can jump higher, moves faster, enemies are more difficult to kill... etc). More details regarding the design will be explained in objects section.</p>
+<p align="center">
+        <img src="Images/bossShader/bossJump1.gif" width="500">
+        </p>
+<p align="center"><em>Boss Jump Attack.</em></p>
+<p>Boss Range Attack Plate: If the boss jumps and starts a range attack, an object of this attack will be created in center location of boss. If the player is within the range (inside collider of this object), the player's health will be deducted.</p>
+<p align="center">
+        <img src="Images/bossParticle/bossParticle.gif" width="500">
+        </p>
+<p align="center"><em>Boss Swipe Attack.</em></p>
+<p>Boss Remote Attack Swipe: If the boss swipes and generates the blade, it will face and fly towards the player. If the blade hits the player, the player's health will be deducted.</p>
+<p align="center">
+        <img src="Images/gameplay/pick.gif" width="500">
+        </p>
+<p align="center"><em>Gun Change.</em></p>
+<p>Pick-up and change rifles: The player is able to change their rifle once during the gameplay. They can choose one option and the gun will be replaced.</p>
+<h3 id="levels-and-world-design">Levels and World Design</h3>
+<h4 id="game-world">Game World:</h4>
+<p>The game is designed in 3D, and the views change as the player moves because the game is played in first person. The game is multi-stage where the stages are separated by the appearance of the boss. Some glowing effects can be used as instructions to attract player as navigation. For example, crates have a glowing boundary to attract player to approach. The player can explore the map by walking around the structures.</p>
+<p align="center">
+        <img src="Images/07-guide.png" width="300">
+        </p>
+<p align="center"><em>Lighting Concept.[6]</em></p>
+<h4 id="world-design">World Design:</h4>
+<p>The game world is designed and implemented as shown in the following diagram. We intend to create a map that is large enough so that players are able to explore and escape from attacks.</p>
+<p align="center">
+        <img src="Images\floordesign.png" width="700">
+        </p>
+<p align="center"><em>Floor Design.</em></p>
+<h4 id="objects">Objects:</h4>
+<p align="center">
+        <img src="Images/ingamecrate.png" width="300">
+        </p>
+<p align="center">
+  <em>In Game Crate.</em>
+</p>
+<p>Supply crate: Scifi themed, placed randomly within the environment. With a red light contained inside, so that player is able to notice it immediately.</p>
+<p align="center">
+        <img src="Images/game-prototype-2.png" width="500">
+        </p>
+<p align="center"><em>Game World Placement.</em></p>
+<p>Structures - walls, interior settings, floors, set limitations and plot of the environment.</p>
+<p align="center">
+        <img src="Images/bosscage.png" width="500">
+        </p>
+<p align="center"><em>Boss Cage.</em></p>
+Boss Cage: a modern cage that locks the boss until a certain time (2:30) passes.
+<p>Enemies (Minotaurs and Boss as shown above) - Their role is to stop the player from staying alive. Matches with the theme biochemical factory that they are invented by the scientists.</p>
+<p align="center">
+        <img src="Images/08-gameview.png" width="300">
+        </p>
+<p align="center"><em>Game View Concept.[7]</em></p>
+<p align="center">
+        <img src="Images/player.png" width="300">
+        </p>
+<p align="center"><em>Player object.</em></p>
+Player - There is no visual for the players as we are using first person view. This is determined due to the limited scope of the project as well as for disk / memory efficiency measures. There will be a gun model that is attached to the right of the player model.
+<p align="center">
+        <img src="Images/supplies.png" width="300">
+        </p>
+<p align="center">
+  <em>Supplies.</em>
+</p>
+<p>Supplies - Potions and bullets.</p>
+<p align="center">
+        <img src="Images/notes.png" width="300">
+        </p>
+<p align="center"><em>Notes.</em></p>      
+<p>Notes (USP) - The notes can be opened by the player so that they can grow their understanding regarding the background theme of the game, as well as for more interactions to change the gameplay. The brightness of the notes will be higher as player walks closer to it for purpose of notification using shaders. It will also contain a wave effect. To further enhance attractiveness, a particle will be added around the notes.</p>
+<p align="center">
+        <img src="Images/bossParticle/onlyParticle.gif" width="300">
+        </p>
+<p align="center"><em>Boss Blade.</em></p>   
+Boss Blade - It is built using particle systems. It has a light-blue color that matches with the boss's left hand. It will be very bright and dynamic. Involving a light to further enhance the brightness.
+<p align="center">
+        <img src="Images/bossShader/bossShader.gif" width="300">
+        </p>
+<p align="center"><em>Boss Range Plate.</em></p>  
+Boss Range Attack Plate - It will be built using a compressed sphere, that is a circular plate, to demonstrate the range of the attack. It will move up and disappear when the attack is completed. It contains a blue colour using a shader to further improve the dynamic, that is expanding from a point eventually filling the entire plate of the object, showing a spinning texture.
+<p align="center">
+        <img src="Images/gameplay/guns.png" width="500">
+        </p>
+<p align="center"><em>Rifles[16].</em></p>  
+<p>Rifles: the player comes up with an default gold rifle, however they have one chance to switch a rifle when they find and interact with the rifles in the lab area. Each rifle have slightly different parameters in rate of fire, weight (impact player speed), and maximum clip load. We have also optimised the material's colour and metalness, smoothness to create better reflections.</p>
+<h4 id="physics">Physics:</h4>
+<p>Gravity - objects and creatures obey gravity on Earth</p>
+<p>Newton’s Law - The player and creatures are able to move around by walking, where gravity is appllied.</p>
+<p>Physical Damage - The player’s health is deducted when getting hit from hostile creatures.  Similarly, the creatures' health is deducted when bullets hit their body.</p>
+<p>Smoother starting and stopping effect - Apply dragging forces when player begins and stops to move, brings effect of acceleration and deceleration.</p>
+<p>Colliders - collider of the enemies is sligthly greater than the mesh model itself to make it not overly difficult for the player to aim the enermies</p>
+<p>Knockback effect - There's knockback effect when player or monsters are attacked.</p>
+<p>Recoil force - A recoil force is also applied when the player shoots.</p>
+<p>Player-Enemy Collision - To provide a smooth, uninterrupted and unblocked gaming experience, the player is able to pass through the minotaurs or the boss. This is a optimised decision that is beneficial to the player.</p>
+<h3 id="art-and-audio">Art and Audio</h3>
+<h4 id="art-style">Art Style:</h4>
+<p>The game has a major art style of science fiction, consisting of futuristic illusions as well as experimental imagination, with plots including concise and spacious layout consisting of modern existing elements and surreal creatures.</p>
+<p align="center">
+        <img src="Images/09-colourtone.png" width="300">
+        </p>
+<p align="center"><em>Game Style Concept.[3][8]</em></p>
+<p>The overall game has a cold tone graphics that maintains bluish tint, aiming to construct an environment with an atmosphere of callous and ruthless. We achieve this by using many white light sources, regular rectangular shapes as walls, and reflective smooth textures for futurism.</p>
+<p>The setting of the game has a strong scientific background, with micro plot in biomedical factories and computer laboratories from the macro perspective. Hence the textures (building blocks) we are using here allow us to construct an unique structure for gamers to explore.</p>
+<p>The overall aesthetic has a constitution of futuristism and surrealism with illusion from biochemistry and science. Some relative art styles or concepts are <em>Cyberpunk 2077</em> , <em>Doom Eternal</em>.</p>
+<p align="center">
+        <img src="Images/11-ref.png" width="300">
+        </p>
+<p align="center"><em>Cyberpunk 2077, Doom Eternal.[9][10]</em></p>       
+<h4 id="sound-and-music">Sound and Music:</h4>
+<p>The sound design includes sound effects and background music.</p>
+<p align="center">
+        <img src="Images/12-sound.png" width="300">
+        </p>
+<p align="center"><em>Sounds.[11][12][13][14][15]</em></p>  
+<p>There are multiple sound effects in this game.</p>
+<ul>
+<li>Security alarm when boss is getting released from cage.</li>
+<li>Playing being attacked.</li>
+<li>reloading and shooting bullets.</li>
+<li>Sound when players is walking.</li>
+<li>Various sounds when minotaurs attack the player.</li>
+</ul>
+<p>The ambient Sci-Fi background music begins after the game is started and in progress, it serves as an auxiliary of the aesthetic design of the scenes, providing the gamers a sense of strangeness and insecurity, an immersive gaming experience overall.</p>
+<p>In settings menu, there will be a sound effect of a notification when player changes the sound level of the game to notify the player of current sound level.</p>
+<p>In the main menu and lose or winning interfaces, there will be another background music that creates tense, exhibiting as an introductory music towards the scientific and mystery theme of the gameplay to be started. Reflecting the theme of experiments. Enhancing user's understand on context.</p>
+<p>There will also be a credits scene with a music that sounds more brighter, which serves as an outro when the player wants to know more about the development team after playing the game contents.</p>
+<h4 id="assets">Assets:</h4>
+<p>The candidate assets are free assets that we have already sourced from unity asset store, each for different objects, scenes.</p>
+<p>Asset 1: Major Scene for combat / gameplay</p>
+<p align="center">
+        <img src="Images/13-asset01.png" width="300">
+        </p>
+<p align="center">
+  <em>biochemical factory.[8]</em>
+</p>
+<p>Asset 2: Monsters and enemies</p>
+<p align="center">
+        <img src="Images/03-character.png" width="300">
+        </p>
+    <p align="center"><em>minotaur.[3]</em></p>
+<p align="center">
+        <img src="Images/04-character2.png" width="300">
+        </p>
+<p align="center">
+  <em>Boss.[4]</em>
+</p>
+<p>Asset 3: gun</p>
+<p align="center">
+        <img src="Images/15-asset04.png" width="300">
+        </p>
+<p align="center">
+  <em>Gun Pack.[16]</em>
+</p>
+<p>Asset 4: Obtainable Items (Power-up)</p>
+<p align="center">
+        <img src="Images/16-asset05.png" width="300">
+        </p>
+<p align="center">
+  <em>Obtainable Items[17]</em>
+</p>
+<p>Asset 5: Crates (to provide obtainable items)</p>
+<p align="center">
+        <img src="Images/17-asset06.png" width="300">
+        </p>
+<p align="center">
+  <em>Scifi Crates.[18]</em>
+</p>
+<h3 id="user-interface-ui">User Interface (UI)</h3>
+<h4 id="menu-ui">Menu UI:</h4>
+<p align="center">
+        <img src="Images/18-menuui.png" width="500">
+        </p>
+<p align="center">
+  <em>Menu UI Design.</em>
+</p>
+<p align="center">
+        <img src="Images/startui.png" width="500">
+        </p>
+<p align="center">
+<p align="center">
+  <em>Actual Menu UI Design[19].</em>
+</p>
+<p>The design of the menu UI intends to simulate a control panel on the wall of the scientific (computer) laboratory, with the wall graphics / textures showing behind the selections. This unites the UI layout together with the game background, that is we start the game as we start the scientific experiments.</p>
+<p>The options available in the menu are: start, settings and credits.</p>
+<p>Since there is no exit function available due to WebGL game environment, in the actual design we have replaced the exit button to credits button.</p>
+<p>Clicking the credits button will display credits to developers.</p>
+<h4 id="settings-ui">Settings UI:</h4>
+<p align="center">
+        <img src="Images/19-settingsui.png" width="500">
+        </p>
+<p align="center">
+  <em>Settings UI Design.</em>
+</p>
+<p align="center">
+        <img src="Images/actualSettingsUI.png" width="500">
+        </p>
+<p align="center">
+  <em>Actual Settings UI.</em>
+</p>
+<p>Again, following the same concept, the settings UI forms by similar shapes but different colours since we are on a different page. The music and sound volume rocks also act as a form of control panel, retaining the same game aesthetic design.</p>
+<p>There are two metrics to be optimised, which is sensitivity and sound level.</p>
+<p>Since we have optimised all of the sound effects and music in a harmonic standard relative to each of its sound level, the user could simply adjust level of all audio at the same time to gain the best experience.</p>
+<p>The sensitivity control we've add is major due to under WebGL development, different computers with different display resolutions will provide drastically different sensitivity level by default. Hence users may want to adjust the levels by themselves for their own experience.</p>
+<h4 id="gameplay-ui">GamePlay UI:</h4>
+<p align="center">
+        <img src="Images/21-gameplayui.jpg" width="500">
+        </p>
+<p align="center">
+  <em>Gameplay UI Design.</em>
+</p>
+<p align="center">
+        <img src="Images/newgpui.png" width="500">
+        </p>
+<p align="center">
+  <em>Actual Gameplay UI.</em>
+</p>
+<p>Left-bottom:</p>
+<ul>
+<li>health bar</li>
+</ul>
+<p>Left: items with a quantity next to the icon</p>
+<ul>
+<li>Healing Potion</li>
+<li>Accelerating Potion</li>
+<li>Greater Bullet Harm Potion</li>
+</ul>
+<p>Right-bottom:</p>
+<ul>
+<li>Bullets and current clip load</li>
+</ul>
+<p>Right-up:</p>
+<ul>
+<li>timer of time left to survive</li>
+</ul>
+<p>Typical first-person shooting game UI aesthetic design. The layout is very straight-forward, clean and easy to use, especially for game controls using keyboard and mouse.</p>
+<h4 id="notes-ui">Notes UI:</h4>
+<p align="center">
+        <img src="Images/20-notesui.jpg" width="500">
+        </p>
+<p align="center">
+  <em>Notes UI Design.</em>
+</p>
+<p align="center">
+        <img src="Images/newnotesui.png" width="500">
+        </p>
+<p align="center">
+  <em>Actual Notes UI.</em>
+</p>
+<p>The notes UI involves displaying a transparent scroll block in the middle of the screen on top of the gameplay ui, while the player is playing the game. It is set to be transparent it won't block the player's view of the scene.</p>
+<p>When the user closes the window, the effect of USP will be displayed under health bar for a limited time.</p>
+<p>The player is able to scroll using the mouse to real all of the story notes message.</p>
+<h4 id="pause-ui">Pause UI:</h4>
+<p align="center">
+        <img src="Images/PauseUIDesign.jpg" width="500">
+        </p>
+<p align="center">
+  <em>Pause UI Design.</em>
+</p>
+<p align="center">
+        <img src="Images/actualPauseUI.png" width="500">
+        </p>
+<p align="center">
+  <em>Actual Pause UI.</em>
+</p>
+<p>The pause UI involves different shapes as in the plot, we are in the inner layer of the plot (virtual world).</p>
+<p>The red colour is to imitate the imagination of the main character (player) in their own mind, so the background will be the current paused gameplay but darkened.</p>
+<p>The two options are resume and quit. At any time during the game, players can use Esc to switch between pause and resume.</p>
+<h4 id="win--lose-ui">Win / Lose UI:</h4>
+<p>When the player loses or win the game, the corresponding UI will POP-UP.</p>
+<p align="center">
+        <img src="Images/loseUI.png" width="500">
+        </p>
+<p align="center">
+  <em>Lose UI.</em>
+</p>
+<p>Colour theme of the Lose UI will be pink and red, representing that the test conducted is in a failed status. It provides some story letting the player know the outcome.</p>
+<p align="center">
+        <img src="Images/winUI.png" width="500">
+        </p>
+<p align="center">
+  <em>Winning UI.</em>
+</p>
+<p>Similarly colour theme of Winning the game will be blue, indicating a successful result. Providing some story for player to understand.</p>
+<p>Both of the interfaces will provide two buttons for player, return to main menu or retry the game.</p>
+<h4 id="credits-ui">Credits UI:</h4>
+<p align="center">
+        <img src="Images/creditsUI.png" width="500">
+        </p>
+<p align="center">
+  <em>Credits UI.</em>
+</p>
+<p>Showing a rolling texts presenting the contributions of the development team. With a logo of the game on left.</p>
+<p>The red button is a button that allows user to return to main menu.</p>
+<h4 id="story--instructions-ui">Story &amp; Instructions UI:</h4>
+<p align="center">
+        <img src="Images/gameplay/introStory.gif" width="500">
+        </p>
+<p align="center">
+  <em>Story UI.</em>
+</p>
+<p>Following start of the game, the user should be able to view a seamless transition, introducing the background of the game and the purpose to survive fir 5 minutes. There is a continue button so the user may continues without reading. This scene simulates the computer coding environment, enhancing the background of game.</p>
+<p align="center">
+        <img src="Images/gameplay/Instructions.gif" width="500">
+        </p>
+<p align="center">
+  <em>Instructions and pre-begin UI.</em>
+</p>
+<p>Then the instruction scenes provide users tutorial on basic controls of the game. The user can either skip or read through.</p>
+<p>There is only one buttion in each page which &quot;next&quot; and &quot;continue&quot; for the last page.</p>
+<p>After either skipping or read through the instruction, the game shows a scene telling players that the simulated enviornment begins to load, the users can click start to begin their journey!</p>
+<h3 id="technology-and-tools">Technology and Tools</h3>
+<ul>
+<li>Unity - development of WebGL game</li>
+<li>GitHub - work collaboratively on the project</li>
+<li>GitHub desktop - project management</li>
+<li>Photoshop - create 2D icons, UI design</li>
+<li>Miro whiteboard - visualise game interface</li>
+<li>Adobe audition - editing of music and sound effects</li>
+<li>Mixamo - character and animation model</li>
+<li>Trello - progress &amp; workflow management</li>
+<li>Monday - Timeline Gantt Chart Drawer</li>
+<li>Canva - UI and layout design</li>
+</ul>
+<h3 id="team-communication-timelines-and-task-assignment">Team Communication, Timelines and Task Assignment</h3>
+<p>Main Communication channel: WeChat
+We host meetings every week or twice a week to ensure the development is always in progress and everyone is on the same page.</p>
+<p align="center">
+        <img src="Images/gametime.png" width="900">
+        </p>
+<p align="center">
+  <em>Game DEV Timeline.</em>
+</p>
+<p>The Monday board of the timeline can be found here:</p>
+<p><a href="https://view.monday.com/1819003647-cb526f05450daee542a0e95510d56c44?r=apse2">Monday.com Timeline</a></p>
+<p>The specific role allocation to tasks can be found here:</p>
+<p><a href="https://view.monday.com/1819003647-29567d209672bf574768c0364d97a984?r=apse2">Monday.com board</a></p>
+<p>Update: the board is no longer editable due to end of trial period for Monday boards</p>
+<p>Here is a summary of high-level role allocations</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Yilu Wang</th>
+<th>Wancheng Tang</th>
+<th>Tianxi Chen</th>
+<th>Hao Xu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GDD</td>
+<td>Game overview Timelines and Task Assignment</td>
+<td>Gameplay and Mechanics</td>
+<td>Art and Audio User interface</td>
+<td>Story and Narrative Levels and World Design</td>
+</tr>
+<tr>
+<td>Prototype</td>
+<td>Enemies animation   Boss animation</td>
+<td>Player gun model and animation Camera</td>
+<td>Game world (a small one)</td>
+<td>Supply crate opening animation Resources models (bullet, healing potion)</td>
+</tr>
+<tr>
+<td>Game DEV</td>
+<td>Boss Animation &amp; timer management</td>
+<td>Game UI (scenes)</td>
+<td>Game World</td>
+<td>Crate Instantiate &amp; AI Nav</td>
+</tr>
+<tr>
+<td>Game DEV</td>
+<td>Enemy Generator &amp; BG</td>
+<td>Game UI (connect with backend)</td>
+<td>boss particle effects / notes / shaders</td>
+<td>AI Nav (continue) / particles explosion</td>
+</tr>
+</tbody>
+</table>
+<h3 id="possible-challenges">Possible Challenges</h3>
+<ul>
+<li>Achieve a high standard on visual stimulation so that the audience can have the experiences that they suppose to have</li>
+<li>Need to create a world that is big enough so the player can have the opportunity to explore</li>
+<li>Making animation for the boss attacking player</li>
+<li>Uniform artistic style of all elements in the scene</li>
+<li>Interior design for the game world can be massive</li>
+<li>Compress textures to make it within the limit</li>
+</ul>
+<h3 id="references">References</h3>
+<p>[1] https://noteofnaught.tumblr.com/post/655515199904808960/%E4%BD%86%E4%B8%81%E5%AE%B6%E9%87%8C%E7%9A%84%E7%BA%B8%E6%9D%A1%E4%B8%8E%E4%BF%A1-notes-and-letters-from-dantes-house</p>
+<p>[2] https://pro.psycom.net/news-research/deep-brain-stimulation-shows-potential-for-treatment-resistant-schizophrenia</p>
+<p>[3] https://assetstore.unity.com/packages/3d/characters/minotaur1-196863</p>
+<p>[4] https://www.mixamo.com/#/?page=1&amp;type=Character</p>
+<p>[5] https://en.wikipedia.org/wiki/File:Stalkershot_2.jpg</p>
+<p>[6] https://www.nationhive.com/en/games/hogwarts-legacy/guide/room-requirement</p>
+<p>[7] https://i.ytimg.com/vi/CF7n4Piqpvs/maxresdefault.jpg</p>
+<p>[8] https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-construction-kit-modular-159280</p>
+<p>[9] https://www.xbox.com/en-US/games/cyberpunk-2077</p>
+<p>[10] https://store.steampowered.com/app/782330/DOOM_Eternal/</p>
+<p>[11] https://assetstore.unity.com/packages/audio/ambient/sci-fi/sci-fi-alarm-sfx-238043</p>
+<p>[12] https://assetstore.unity.com/packages/audio/sound-fx/classic-footstep-sfx-173668</p>
+<p>[13] https://assetstore.unity.com/packages/audio/sound-fx/sci-fi-guns-sfx-pack-181144</p>
+<p>[14] https://assetstore.unity.com/packages/audio/sound-fx/foley/door-cabinets-lockers-free-257610</p>
+<p>[15] https://assetstore.unity.com/packages/audio/ambient/sci-fi/sci-fi-ambiant-power-174139</p>
+<p>[16] https://assetstore.unity.com/packages/3d/props/guns/sample-low-poly-guns-pack-207957</p>
+<p>[17] https://assetstore.unity.com/packages/3d/props/food/health-potion-bottle-set-204920</p>
+<p>[18] https://assetstore.unity.com/packages/3d/nextgen-sci-fi-crate-45877</p>
+<p>[19] https://www.bing.com/images/search?view=detailV2&amp;ccid=t6XVmwuM&amp;id=9D4B3E61164A11736FC3076C6A38A4482B30626D&amp;thid=OIP.t6XVmwuM1vmTmpz11ktvjwHaEK&amp;mediaurl=https%3a%2f%2fimages3.alphacoders.com%2f109%2f1092510.jpg&amp;exph=2160&amp;expw=3840&amp;q=robot+in+scifi+experiment&amp;simid=608045362569430795&amp;FORM=IRPRST&amp;ck=98606F7DB3EED41FC3BF13BF66F9B35D&amp;selectedIndex=24&amp;ajaxhist=0&amp;ajaxserp=0</p>
+
+</body>
+</html>

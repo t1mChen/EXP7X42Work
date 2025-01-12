@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="game-report">Game Report</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#1-evaluation-plan">1. Evaluation Plan</a>
+<ul>
+<li><a href="#11-evaluation-techniques">1.1. Evaluation Techniques</a></li>
+<li><a href="#12-participants">1.2. Participants</a></li>
+<li><a href="#13-data-collection">1.3. Data collection</a></li>
+<li><a href="#14-data-analysis">1.4. Data Analysis</a></li>
+<li><a href="#15-timeline">1.5. Timeline</a></li>
+<li><a href="#16-responsibilities">1.6. Responsibilities</a></li>
+</ul>
+</li>
+<li><a href="#2-evaluation-report">2. Evaluation Report</a>
+<ul>
+<li><a href="21-participant-background-summary">2.1. Participant Background Summary</a></li>
+<li><a href="#22-raw-data">2.2. Raw Data</a></li>
+<li><a href="#23-analysis-post-task-walkthrough">2.3. Analysis: Post-task Walkthrough</a></li>
+<li><a href="#24-analysis-interview">2.4. Analysis: Interview</a></li>
+</ul>
+</li>
+<li><a href="#3-shaders-and-special-effects">3. Shaders and Special Effects</a>
+<ul>
+<li><a href="#31-shader---lore-notes">3.1. Shader - Lore Notes</a></li>
+<li><a href="#32-shader---boss-jump-attack">3.2. Shader - Boss Jump Attack</a></li>
+<li><a href="#33-particle-system---boss-swipe-attack">3.3. Particle System - Boss Swipe Attack</a></li>
+</ul>
+</li>
+<li><a href="#4-summary-of-contributions">4. Summary of Contributions</a></li>
+<li><a href="#5-references-and-external-resources">5. References and External Resources</a></li>
+</ul>
+<h2 id="1-evaluation-plan">1. Evaluation Plan</h2>
+<h3 id="11-evaluation-techniques">1.1. Evaluation Techniques</h3>
+<h4 id="111-observational-method-post-task-walkthroughs">1.1.1. Observational Method: Post-task Walkthroughs</h4>
+<h5 id="advantage-of-the-technique">Advantage of the technique</h5>
+<p>The game is designed to be quite intense, so it may cause some disruptions that affect user experience if the participants were asked to explain their thoughts. In this case, Post-task Walkthroughs will be advantageous compared to Think Aloud and Cooperative Evaluation, because it allows the participants to be immersed in the game without the need to talk while playing. Furthermore, the participants can explain their thinking more clearly and accurately after the game compared to when they are trying to survive intensive enemy attacks, which can make the user feedback collection process easier. From the recording of the participants playing the game, we can also generate more detailed information (e.g. number of enemies killed, number of potions used, etc.) when we look back at the recording.</p>
+<h5 id="the-participants-role">The participants’ role</h5>
+<p>The participants need to record their screens from the start of the game until the end (either win or loss), including the noises they make (but they are not forced to make any). This allows for a complete understanding of what they did, including at the starting page and during the ending scene. They are allowed to play the game multiple times if they would like to.</p>
+<p>Afterward, preferably right after they finish the game, we will have a conversation with them and watch their recordings with them. They would need to explain their thoughts during the game, including the reason behind the choices they made, their feelings when an event happened, their experiences performing the functions within the game, etc.</p>
+<h5 id="the-participants-tasks-in-the-game">The participants’ tasks in the game</h5>
+<p>The game is designed to have some degree of freedom for players. Players can choose to do whatever they want to (e.g. shoot enemy or escape from the enemy, pick up lore notes, etc.).</p>
+<p>However, we do want all participants to perform the basic functionalities in the game, including:</p>
+<ul>
+<li>Kill at least one enemy</li>
+<li>Open at least one crate</li>
+<li>Use at least one potion</li>
+<li>Pick up at least one lore note</li>
+<li>Going up the stairs</li>
+<li>Jump</li>
+<li>Survive as long as they can</li>
+<li>Win at least once</li>
+</ul>
+<p>Other than the above, the participants will also be required to lose once to provide feedback on the failed scene from the game.</p>
+<h4 id="112-querying-technique-interview">1.1.2. Querying Technique: Interview</h4>
+<h5 id="advantages-of-the-technique">Advantages of the technique</h5>
+<p>Compared to questionnaires that use the same questions for all participants, interviews can focus more specifically on each individual's experiences rather than being too broad. Interviews can include objective and quantitative questions that questionnaires are good at, meanwhile it is also suitable for subjective open-ended questions that provide us with different aspects that participants focus on. Follow-up questions allow for more personalized questions that can give us more insightful feedback, which can be extremely helpful for us to make high-quality improvements.</p>
+<h5 id="the-participants-role">The participants’ role</h5>
+<p>Interviews can be done within 24 hours of them finishing with the game. The interview will be divided into two parts:</p>
+<ol>
+<li>Quick rating questions on the overall experiences;</li>
+<li>Open questions on the good aspects and problems that the participants identified during the game.</li>
+</ol>
+<p>At the end of the interview, we will be filling up the table below:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>Rating (1-10)</th>
+<th>Commend</th>
+<th>Problem</th>
+<th>Suggestion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Player Control</td>
+<td>The comfortability of using keyboard control for shooting, movement, picking up and using items</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>The smoothness of using the mouse to make the camera rotation</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>The experience with the shooting mechanics in the game (including the animation, frequency, and capacity of ammunition)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Minotaur &amp; Boss</td>
+<td>The suitability of enemy harm</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>The distribution and quantity of enemy</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>The interaction between the enemy and the player</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>The representation and appearance of the boss and its cages</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Crate &amp; Items</td>
+<td>The distribution and quantity of crates</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>The strength of the crate items</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>The diversity of crate items</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Lore mechanics impact (USP)</td>
+<td>The extent to which the lore mechanics increase the entertainment value of the game</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>The extent to which the lore is nicely integrated into the game</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Visual effect &amp; UI</td>
+<td>The arrangement of the health bar, item menu, number and capacity of bullets</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>The instructions are clear and noticeable</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>The extent to which the starting page and the ending page match the game</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>The aesthetic quality of the visual effects in the game (e.g. shooting, bleeding, healing, speeding up, attacks of the boss)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>The aesthetic quality of the text in the game (e.g. timer, instructions on keyboard controls, text of the lores）</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Audio effect</td>
+<td>The extent to which the background music fits the game</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>The suitability of the sound effect (e.g. the player moving, the enemy roaring, opening crates, using crate items)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Game Physics</td>
+<td>The extent of the game physics matching your common sense</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Overall</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>(new topics coming out during the interview)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p align="center">
+  <em>Table 1. Interview feedback table.</em>
+</p>
+<p>This table is a guide for result collections, but follow-up questions relating to new topics that are not shown in the table can be possible if we find their thoughts worth elaboration. We also aim to keep the conversation natural instead of being forced to go to the next thread on purpose.</p>
+<h3 id="12-participants">1.2. Participants</h3>
+<h4 id="121-participants-background">1.2.1. Participants background</h4>
+<p>Our target participants will be teenagers within the age range of 18-30.</p>
+<p>The participants must have some experience with PC games (i.e. playing games involving using mouse and keyboard) and best to have an interest in the theme of science fiction or adventure, as this is our target audience portrait.</p>
+<p>We will purposefully include participants with a variety of understanding and experience in FPS gaming, including people who have never played FPS games before to people who play FPS games on a daily basis. Most of the participants would be players who have at least some experience with FPS games.</p>
+<p>By having participants from a variety of gaming backgrounds, we can ensure that we obtain informative evaluations from different ranges of perspectives.</p>
+<h4 id="122-recruitment-process">1.2.2. Recruitment process</h4>
+<p>Most of the participants will be recruited from our classmates and friendship groups. We will also include some participants from gamer group chats (on WeChat and Discord) who are experienced in gaming to make sure their evaluations are specific and professional and can hit the point of our game.</p>
+<p>In addition, we will invite our families as participants. Although they might not be in the targeted age group, they could be more willing to spend time on our game and give more patience in suggestions.</p>
+<p>We will ensure the participants can perform the tasks within a certain time frame - including completing game playing, followed by the evaluation tasks (i.e. post-task walkthrough or interview) under our planned evaluation strategy and criteria.</p>
+<h3 id="13-data-collection">1.3. Data collection</h3>
+<h4 id="131-observational-method-post-task-walkthrough">1.3.1. Observational Method: Post-task Walkthrough</h4>
+<h5 id="types-of-data-and-method-to-collect-them">Types of Data and Method to collect them</h5>
+<p>During the walkthrough where the participants talk about their thoughts during the game, we will note the important part using a notepad, while recording the conversations as an audio recording for future reference.</p>
+<p>From the gaming video recorded, we will also collect some quantitive game data that reflects the actions and performance of the participants during the game (e.g. number of enemies killed). We will also note any bugs that we discover from the recording and later summarize them into a to-do list to fix.</p>
+<h5 id="tools-used-to-collect-data">Tools used to collect data</h5>
+<p>Built-in video capture software on computers might be used by the participants.</p>
+<p>Recordings will be done using phone or via Zoom depending on the nature of the meeting location.</p>
+<p>Results will be noted using a shared Google Doc to facilitate information transparency within the team.</p>
+<h4 id="132-querying-method-interview">1.3.2. Querying Method: Interview</h4>
+<h5 id="types-of-data-and-method-to-collect-them">Types of Data and Method to collect them</h5>
+<p>Interviews will focus on collecting verbal data through communication. The interviews will be recorded for future reference as an audio recording.</p>
+<p>We collect the player’s feedback based on the questions we prepared, and there would also be some extensions generated through the conversation. The collected feedback will be integrated into the table shown in Section 1.1.2 (see Table 1 above).</p>
+<h5 id="tools-used-to-collect-data">Tools used to collect data</h5>
+<p>Recordings will be done using phone or via Zoom depending on the nature of the meeting location.</p>
+<p>Qualitative data are stored in a table (see Table 1 in Section 1.1.2) in a shared Excel sheet.</p>
+<p>Other interesting points will be noted using a shared Google Doc to facilitate information transparency within the team.</p>
+<h3 id="14-data-analysis">1.4. Data Analysis</h3>
+<h4 id="141-post-task-walkthrough">1.4.1. Post task walkthrough</h4>
+<p>From the quantitative data that can be collected using the game-playing recording, we will generate the following <strong>graphs</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Types of graph</th>
+<th>Data represented</th>
+<th>Analysis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scatter plot</td>
+<td><ul><li>Horizontal axis = the number of potions received by each parcipant</li> <li>Vertical axis = the number of potions used by each parcipant</li> <li>Each type of potion represented by one graph</li> <li>Use a dotted line to represent our expected number of potions used (i.e. we expect the players to use all the potions they get, so the trend should be y=x)</li></ul></td>
+<td>Use percentage of potions used out of the potions received together with our expectation value to determine whether we are putting too much potion or not enough potions</td>
+</tr>
+<tr>
+<td>Scatter plot</td>
+<td><ul><li>Horizontal axis = the number of bullets owned</li> <li>Vertical axis = the number of bullets used</li> <li>Use a horizontal dotted line to show the initial number of bullets the player has</li></ul></td>
+<td>1) Check if the participants used at least the initial amount of bullets, if not, the initial amount is too high; 2) Check if the participants used most of the bullets they owned after collecting bullets from crates (i.e. around 80%), if not, there are too many bullets in the crates.</td>
+</tr>
+<tr>
+<td>Bar graph</td>
+<td><ul><li>Horizontal axis = different participants</li> <li>Vertical axis (left) = total number of enemies killed by each participant</li> <li>Vertical axis (right) = number of bullets used</li></ul></td>
+<td>The number of bullets used compared against enemies killed indicates the &quot;bullet efficiency&quot;, defined as the average number of bullets needed to kill an enemy. An acceptable range is between 25 and 35 bullet per enemy (enemy can be killed by 25 bullets), suggesting that players have not wasted too many bullets without getting a kill to increase chance of survival.</td>
+</tr>
+<tr>
+<td>Pie chart</td>
+<td><ul><li>Showing the minimum health of the participants (i.e. 0-10, 10-20, 20-30, ..., 80-90, 90-100).</li></ul></td>
+<td>By knowing the minimum health, we can decide whether the difficulty is suitable, thus changing the setting of the game (e.g. the proportion of negative buff from lore). The expected minimum health reached is between 30% and 70%. This means the game will propose some difficulty even for skilled players, but also not too difficult that players new to FPS will easily die.</td>
+</tr>
+</tbody>
+</table>
+<p align="center">
+  <em>Table 2. Data analysis graphs.</em>
+</p>
+<p>There will also be a <strong>written report</strong> on the possible improvements and/or bugs identified during the walkthrough or via the game-playing recording.</p>
+<h4 id="142-interview">1.4.2. Interview</h4>
+<p>We will use the rating for each of the big areas of the game to form a <strong>pie chart</strong>, so that we can visualize the proportion of dissatisfaction on each aspect of the game, thus determining the priority of the problems we need to solve (e.g. if the lore mechanism takes the most proportion of dissatisfaction, then we focus on solving problems of lore first, and then the second topic with most dissatisfaction in the interest of time).</p>
+<p>Example:</p>
+<p align="center">
+        <img src="Images/EvaluationPlan/DataAnalysis-Interview-PieChart.png" width="400">
+        </p>
+<p align="center">
+  <em>Figure 1. Sample pie chart.</em>
+</p>
+<p>There will also be a <strong>written report</strong> based on the qualitative data, summarizing the important points about the possible improvement that the participants offer on the aspects that they are not satisfied with. Based on their response to the interviewing questions, we will also add our own thoughts on the improvement strategies as well.</p>
+<h3 id="15-timeline">1.5. Timeline</h3>
+<p>https://view.monday.com/1818674093-0104d9dcc80b375c475ca7c7e23af11f?r=apse2</p>
+<p align="center">
+        <img src="Images/evaluationtimeline.png" width="900">
+        </p>
+<p align="center">
+  <em>Figure 2. Evaluation timeline.</em>
+</p>
+<h3 id="16-responsibilities">1.6. Responsibilities</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Members</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Plan - Evaluation Techniques</td>
+<td>Yilu Wang, Hao Xu</td>
+</tr>
+<tr>
+<td>Plan - Participants</td>
+<td>Tianxi Chen, Yilu Wang</td>
+</tr>
+<tr>
+<td>Plan - Data Collection Plan</td>
+<td>Hao Xu, Yilu Wang</td>
+</tr>
+<tr>
+<td>Plan - Data Analysis</td>
+<td>Yilu Wang, Wancheng Tang, Tianxi Chen</td>
+</tr>
+<tr>
+<td>Conduct Post-task walkthrough</td>
+<td>Hao Xu (2 participants), Wancheng Tang (1 participant), Tianxi Chen (2 participants)</td>
+</tr>
+<tr>
+<td>Conduct Interview</td>
+<td>Yilu Wang (4 participants), Wancheng Tang (1 participant)</td>
+</tr>
+<tr>
+<td>Data Analysis: Post-task Walkthrough</td>
+<td>Wancheng Tang</td>
+</tr>
+<tr>
+<td>Data Analysis: Interview</td>
+<td>Yilu Wang</td>
+</tr>
+<tr>
+<td>Diagrams</td>
+<td>Hao Xu</td>
+</tr>
+<tr>
+<td>Shader &amp; Particle System Analysis</td>
+<td>Tianxi Chen</td>
+</tr>
+<tr>
+<td>Game development (improvements)</td>
+<td>All (to be split further after we received the result)</td>
+</tr>
+<tr>
+<td>Finalise production and review checklist</td>
+<td>All</td>
+</tr>
+<tr>
+<td>Gameplay video</td>
+<td>Tianxi Chen</td>
+</tr>
+</tbody>
+</table>
+<p align="center">
+  <em>Table 3. Group member responsibilities.</em>
+</p>
+<p>We have allocated each task to team members based on equal estimation of length, to ensure that each team member contributes equally. The type of responsibility that each member is assigned to is also based on their capability. The members who have a wide friendship group are assigned to find more participants; the members who can do post-editing are assigned the task of making the gameplay video.</p>
+<p>To further enhance fairness and address potential teamwork issues, we will have meetings at least 1-2 times a week at the end of each stage (e.g. after data collection) for a collaborative environment where we share our thoughts and help out on the challenges that others are facing. We constantly check the progress of each team member in our group chat and discuss topics together for further actions during each meeting.</p>
+<h2 id="2-evaluation-report">2. Evaluation Report</h2>
+<h3 id="21-participant-background-summary">2.1. Participant Background Summary</h3>
+<p>All our participants are between the age of 18-30. The observational method (post-task walkthrough) and querying technique (interview) have 5 participants each, with various experiences in FPS. This matches perfectly with the target audience of the game.</p>
+<table>
+<thead>
+<tr>
+<th>Experiences with FPS</th>
+<th>Number of Participants (Post-task Walkthrough)</th>
+<th>Number of Participants (Interview)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Has never played FPS but played other PC games</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>The last time playing FPS was before 12 months</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Play FPS on a monthly basis</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Play FPS on a weekly basis</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p align="center">
+  <em>Table 4. Participants' experience with FPS.</em>
+</p>
+<h3 id="22-raw-data">2.2. Raw Data</h3>
+<p>(To see our raw data, please use the University of Melbourn email to access the following link: https://docs.google.com/spreadsheets/d/1-lcbA4ZNe1Zs1rdXUYZSg7XvZR-qJ_GpZx8wRG9f0PI/edit?pli=1#gid=0)</p>
+<h3 id="23-analysis-post-task-walkthrough">2.3. Analysis: Post-task Walkthrough</h3>
+<p>To evaluate the information collected data from the Post-task Walkthrough and identify potential improvement, we followed these steps</p>
+<ol>
+<li>The participants were asked to rewatch the video of their game play, with special attention given to their allocation of resources (i.e., why they used it or why they didn’t). Noteworthy responses are recorded.</li>
+<li>The following data are recorded for each participant’s gameplay to be used in quantitative analysis
+<ol>
+<li>The total number of each kind of potions collected, along with the number of each kind used</li>
+<li>The total number of bullets (initial + collected) throughout the game, along with the number of bullets used</li>
+<li>The lowest health reached throughout the game</li>
+<li>The number of enemies killed</li>
+</ol>
+</li>
+<li>The results from step 2, along with the expectations of each value determined in evaluation plan, were used to generate 5 graphs and 1 chart (as shown in Figure 3, 5, 6, 7).</li>
+<li>The visual representations from step 3 are further analysed to assess game difficulty, strength of resources and how well players understand the resources’ uses. Focus is given to the mismatch between expectation determined prior and the actual data, which likely indicates a problem in game design.</li>
+<li>Problems identified from step 4 are combined with participant responses in the walkthrough to determine practical improvement areas.</li>
+</ol>
+<h4 id="231-analysis-on-potion-usage">2.3.1. Analysis on potion usage</h4>
+<h5 id="graphs">Graphs</h5>
+<p align="center">
+        <img src="Images/EvaluationReport/Walkthrough-Potion-BlueSpeed.png" height="250">
+        <img src="Images/EvaluationReport/Walkthrough-Potion-GreenDamage.png" height="250">
+        <img src="Images/EvaluationReport/Walkthrough-Potion-RedHealth.png" height="250">
+        </p>
+<p align="center">
+  <em>Figure 3. Scatterplot reflecting the number of potions used vs number of potions collected.</em>
+</p>
+<h5 id="problem-identified">Problem identified</h5>
+<p>As outlined in the evaluation plan, players are expected to use all potions collected since they can benefit the player at any point in game, and wasting this resource is discouraged.</p>
+<p>The graphs show the expected potion usage with a dotted line at y = x (expected same number of potions picked up and used). Any dot below this line represents a player who had unused potions at the end of the game.</p>
+<p>Such points are present in the graphs for all three types of potions. During the walkthrough, the primary reason given by participants was that they were unawere of the effect of potion, since there was no description of the objects. This leads to them perceiving the potions as useless and ultimately wasting the benefits.</p>
+<h5 id="solution">Solution</h5>
+<p>Originally, the effect of potion was never specified in game because we did not want player to view too much information during gameplay, which can distract them from shooting. However, the problem of them being confused about helpful resources is more serious, so we decided to implement a new scene containing a short tutorial prior to starting the game. This way the player can be more knowledgeable about the resources in hand before engaging in gameplay and can make informed decisions on how to use these resources strategically.</p>
+<p>The new scene is as following:</p>
+<p align="center">
+        <img src="Images/EvaluationReport/Walkthrough-Improvement-Potion.PNG" height="250">
+        </p>
+<p align="center">
+  <em>Figure 4. Improved scene of tutorial of potions.</em>
+</p>
+<h4 id="232-analysis-on-bullet-usage">2.3.2. Analysis on bullet usage</h4>
+<h5 id="graph">Graph</h5>
+<p align="center">
+        <img src="Images/EvaluationReport/Walkthrough-BulletUsage.png" width="690">
+        </p>
+<p align="center">
+  <em>Figure 5. Scatterplot of number of bullets used vs total number of bullets.</em>
+</p>
+<h5 id="problem-identified">Problem identified</h5>
+<p>From the quantitative data, the percentage of bullets used ranges from 66% to 100%, with an average percentage of 82.9% and a median around the same value. This matches our expectation during the planning stage. However, it is also noticed that two players used below 130 bullets in total, that is, below the initial value of bullets. We believe this proposes a flaw in design because this leaves the extra bullets from crates potentially useless. As a result, players may lose the incentive to open crates if they think the bullets are more than enough.</p>
+<p>Upon discussion with these two players in the walkthrough, feedback was given that the shooting speed felt too slow. Consequently, they were not using the bullets at a high rate.</p>
+<h5 id="solution">Solution</h5>
+<p>In response, an improvement is made to <strong>decrease the shooting interval</strong> from 0.50s to 0.25s. This makes bullets more valuable as it runs out more quickly, and encourages players to explore the game and look for more crates.</p>
+<p>Another improvement implemented is to <strong>decrease the initial number of bullets, while increasing the number of bullets in each create</strong>. Initial bullets are reduced from 130 to 50, while crate bullets are increased from 10 to 25. This makes the crates more valuable and attractive to players. Additionally, initial bullets run out more quickly, forcing players to actively look for crates.</p>
+<h4 id="233-analysis-on-shooting-efficiency">2.3.3. Analysis on shooting efficiency</h4>
+<h5 id="graph">Graph</h5>
+<p align="center">
+        <img src="Images/EvaluationReport/Walkthrough-ShootingPerformance.png" width="690">
+        </p>
+<p align="center">
+  <em>Figure 6. Bar graph of bullet used vs enemies killed for each player.</em>
+</p>
+<h5 id="problem-identified">Problem identified</h5>
+<p>The shooting performance is an important indicator of the difficulty of the shooting aspect of game. Bullet efficiency is defined as the average number of bulleted needed to kill an enemy. In the data collected, 3 players' statistics fall outside the acceptable range of between 25 and 35 bullets per enemy.</p>
+<p>After reviewing their gameplay, it is noticed that their aim is good, but the enemies take too many bullets to kill. In midst of shooting, enemy gradually approaches players and start attacking, players are forced to run away and leave the enemy alive to avoid damage. This leaves a lot of bullet resources wasted without actually aiding the survival aim.</p>
+<h5 id="solution">Solution</h5>
+<p>The solution for the problem focuses on reducing the length of time needed to kill an enemy, so that player can finish the kill before engaging in other actions. The improvements consists of:</p>
+<ol>
+<li>Boosting shooting speed, as discussed before in solution part of section 2.3.2. Analysis on bullet usage.</li>
+<li>Reduce the health of enemies making them easier to defeat.</li>
+</ol>
+<p>Another improvement made taking a different approach is to increase the harm of enemy, so that enemies propose a greater threat to players. Leaving one enemy alive after already investing resources becomes less acceptable than before, encouraging players to prioritize completing the kill even when at risk of taking damage.</p>
+<h4 id="234-analysis-on-minimum-health">2.3.4. Analysis on minimum health</h4>
+<h5 id="chart">Chart</h5>
+<p align="center">
+        <img src="Images/EvaluationReport/Walkthrough-LowestHealth.png" width="690">
+        </p>
+<p align="center">
+  <em>Figure 7. Pie chart of the minimum health reached by players throughout game.</em>
+</p>
+<h5 id="problem-identified">Problem identified</h5>
+<p>The minimum health serves as an important indicator of the difficulty of the survival challenge. In the evaluation plan, an approapriate range is set to be between 30% and 70%, accounting for variation of skills. However, collected data shows that 40% of participants lost 20-30% of their health and 60% lost only 10-20%. This leaves all participants' minimum health higher than the acceptable range, so the survival mechanism in current design is too easy.</p>
+<p>Upon speaking with participants, it became evident that avoiding damage is too simple. The attack animations of enemies take too long. After an enemy sights a player, it had to approach, stand still, go through a lengthy attack animation, then the damage would take place. If player moves during attack motion, damage can be dodged easily. This incentivized players to flee rather than engage in fight, which contradicts the nature of the game as a shooting game.</p>
+<h5 id="solution">Solution</h5>
+<p>To increase the difficulty of survival, <strong>Enemy attack is accelerated</strong>. As stated in the problem section above, originally player can completely avoid damage by continuously running. In the new version, when the enemy stands close to player and initiates an attack, the player will receive exactly one hit if player is running at normal speed. This encourages player to fight enemy before it comes close, or use speed potions to run at a speed that can avoid damage. It also becomes more difficult to survive because the player is almost guaranteed to suffer a hit when being cornered by enemies from multiple directions.</p>
+<h3 id="24-analysis-interview">2.4. Analysis: Interview</h3>
+<p>To analyze the data from the interview and identify potential improvements, we followed these steps:</p>
+<ol>
+<li>The participants were asked to give a rating from 0-10 for each criterion we set</li>
+<li>The sums of the points deducted (from 10) for each criterion were calculated</li>
+<li>The results from step 2 were used to generate a pie chart (as shown in Figure 8 below), which shows the proportion of the points deducted from each criterion out of all points deducted across all 5 participants</li>
+<li>Focus on the improvements of the areas that most points were deducted from (i.e. the areas that occupy a larger proportion of the pie chart)</li>
+<li>Determine practical improvement methods based on the interview responses from the participants about why they are dissatisfied with the areas and our own understanding and thinking of the game</li>
+</ol>
+<p align="center">
+        <img src="Images/EvaluationReport/Interview-PointsLostOnCriteria.png" width="790">
+        </p>
+<p align="center">
+  <em>Figure 8. Pie chart reflecting points lost on each interview criterion.</em>
+</p>
+<h4 id="241-communication-of-instructions">2.4.1. Communication of Instructions</h4>
+<h5 id="problem-identified">Problem identified</h5>
+<p>The criterion <em>Clearness of Instruction</em> (9.7% of the points lost) occupies the largest space on the pie chart, which implies there is a huge problem with the way we communicate instructions to the player. There are two major reasons that caused this problem.</p>
+<p>Firstly, <strong>the aim and background of the game are not clear enough, some participants didn't realize that the winning condition is to survive for 5 minutes</strong>. Although the participants saw the timer, they didn't understand that the timer was supposed to be a countdown of the time they needed to stay alive to win. The lack of background understanding also caused points deducted from other criteria - they voted down on  <em>Artistic Style of Starting Page &amp; Ending Page</em> (5.8% of the points lost) because they think the starting and ending page has a sci-fi style but the Minotaur is from the medieval, so their artistic style does not match the game; they voted down on <em>Integration of Lore and the Game</em> (8.2% of points lost) and <em>Entertainment Value of the Lore Mechanics</em> (5.5% of the points lost) because they didn't know the lore notes has background story nor realized that it has some effects on the game.</p>
+<p>Secondly, <strong>the instructions are not clear nor readable to the players so they cannot understand how to play the game</strong>. The font we used for the texts was quite fancy, and the duration of the texts appearing on the screen was too short for the participants to properly read them. Therefore, most of the participants guessed the way to perform certain actions based on their knowledge of PFS. Since our game also targets the group of people who have not played much FPS, this is something we need to improve on.</p>
+<h5 id="solution">Solution</h5>
+<p>Originally, we purposefully made the background story vague and fuzzy to make the players more curious about the background story, so they are more interested in looking at the lore notes. However, it turns out that players do not want to spend time on a story that they previously knew nothing about in a 5-minutes game. Therefore we changed our strategy to making the background story super clear at the start of the game before the player enters the game, so the players are more familiar with the game and thus get a better user experience.</p>
+<p>A new scene is added after the players click &quot;start&quot; and before the players enter the game. This scene includes:</p>
+<ul>
+<li>An explicit textual explanation of the background story (as shown in Figure 9 below)</li>
+<li>The goal of surviving for 5 minutes (as shown in Figure 9 below)</li>
+<li>The instructions on how to move, jump, open crates and notes, use potions, etc. (as shown in Figure 10 below)</li>
+</ul>
+<p align="center">
+        <img src="Images/EvaluationReport/InterviewImprove-BackgroundStory.png" height="200">
+        <img src="Images/EvaluationReport/InterviewImprove-Instruction.png" height="200">
+        </p>
+<p align="center">
+ <em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</em>
+  <em>Figure 9. Textual background story.</em> 
+<em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</em>
+  <em>Figure 10. Instructions on how to play the game.</em>
+</p>
+<p>We've also added a 5-minute timer on the UI (as shown in Figure 11 below) instead of just having timers within the scene (e.g. on the walls). Since we have a background introduction before the game starts, the timer on the UI will make sense for the players and allow the players to know more about what situation they are in within the game.</p>
+<p>There are still instructions within the game (e.g. when the player is close to the lore note, there will be an instruction saying how to open it) despite the fact that the instructions are shown before the game starts. This is to give the participants some handy reminders. The font and the colour of the texts changed to a more readable style (as shown in Figure 11 below) so they can be more helpful and useful to the players.</p>
+<p align="center">
+        <img src="Images/EvaluationReport/InterviewImprove-TextTimer.png" width="550">
+        </p>
+<p align="center">
+  <em>Figure 11. Improved font and colour of text & timer on UI.</em>
+</p>
+<h4 id="242-fight-between-enemy-and-player">2.4.2. Fight Between Enemy and Player</h4>
+<h5 id="problem-identified">Problem identified</h5>
+<p>Another three sections that have lots of points lost are <em>Shooting Experience</em> (7.9% of the points lost), <em>Enemy Harm</em> (7.3% of the points lost), and <em>Enemy Distribution &amp; Quantity</em> (7.9% of the points lost). They are all related to the interaction between the enemies and the player.</p>
+<p>The participants tend to run away when they see enemies instead of fighting against them because the player can win the game if they keep running without shooting the enemy - they can survive for 5 minutes using this strategy. This is definitely an option but we don't want it to be what the majority choose. The enemies should put some survival pressure on the player so that they have to shoot at least some of the enemies.</p>
+<p>There are many factors that lead to this problem, the major ones are summarized as the following:</p>
+<ul>
+<li>Enemy requires too many bullets to defeat, so there is not much enjoyment in shooting them</li>
+<li>The enemies can chase the player for the whole duration of the game once they detect the player, which is results in the player being chased by many enemies, reducing the ability and motivation to kill the enemies</li>
+<li>The enemy harm is too little, so the player can just move through the enemies without losing too much health - running away is too easy so they don't need to fight</li>
+</ul>
+<h5 id="solution">Solution</h5>
+<p>Some changes to the configuration of the enemies are done:</p>
+<ul>
+<li>Enemy health is reduced to 120 from 500, so the player can now kill an enemy in 6 bullets</li>
+<li>The enemies can only chase the player when the player is within their detecting radius, so if the player keeps running away from an enemy, then the enemy will eventually stop chasing</li>
+<li>The enemy's harm is increased</li>
+</ul>
+<p>After these changes, killing enemies is easier, and fleeing is harder. So there is a higher possibility that the players fight instead of playing it as a &quot;parkour game&quot;.</p>
+<h4 id="243-interaction-between-enemy-and-bullet">2.4.3. Interaction Between Enemy and Bullet</h4>
+<h5 id="problem-identified">Problem identified</h5>
+<p>One feedback on <em>Enemy Interaction with Player</em> (4.8% of the points lost) that we found significant is that <strong>an enemy does not react after the player successfully shoots it from far away</strong>. This is due to the missing logic on enemies' response when bullets collide with them. It is abnormal that they do not respond.</p>
+<h5 id="solution">Solution</h5>
+<p>We implemented the logic of forcing the enemies to chase the player for a period of time (i.e. 10 sec) after being hit by a bullet, even if the player is not in their detecting radius.</p>
+<h2 id="3-shaders-and-special-effects">3. Shaders and Special Effects</h2>
+<h3 id="31-shader---lore-notes">3.1. Shader - Lore Notes</h3>
+<p><a href="https://github.com/COMP30019/project-2-undefined/blob/main/Assets/MyGame/Shaders/notesShader.shader">&quot;github link to notesShader&quot;</a></p>
+<p>Path:</p>
+<p>Assets/MyGame/Shaders/notesShader.shader</p>
+<p>The first shader file that we have custom-written is used onto our presentation of the unique selling point, which is on our notes objects. In this particular setting, this shader involves effects from three major aspects: texture, vertex shader and shading from illumination. Hence, three stages of the rendering pipeline are involved. These are the vertex shading stage, rasterizer stage, as well as the pixel shader stage, also known as fragment shader.</p>
+<h4 id="311-vertex-shader">3.1.1. Vertex Shader</h4>
+<p>We will first discuss the vertex shader stage in the rendering pipeline. As discussed in the workshops, we’ve implemented a “sine” wave effect towards the object. From the projection perspective, we’ve decided to use the default MVP transform process of the shader file within unity engine, where we map the object from model space towards the world space, then to view coordinates and finally towards the projection onto screen. Before transforming into a MVP matrix from vertex coordinates, here is the implementation done to create the effects.</p>
+<p align="center">
+        <img src="Images/notesShader/notesfloat.gif" width="500">
+        </p>
+<p align="center">
+  <em>Vertex Shader of Notes.</em>
+</p>
+<p>From the time that the scene of unity engine has been activated, it brings a transposed effect using the sine function on the vertex of y axis based on the location of its z-axis points. Hence, the object itself will be blended with a sine wave. This harmonically merges into our design of “notes” objects, since these objects are displayed and presented as floating papers. On top of the wave effect itself, we’ve also added a sine wave uniquely from time value, so that the object on display will float up and down representing as a “notes” that is scattered based on our GDD.</p>
+<p>At this stage, we also record the world coordinates and normal coordinates and pass it to output for the pixel shader we will explore later on.</p>
+<p>After the MVP matrix is getting generated and converted, it brings the effect into the rasterizer stage converting into pixels, we have arrived at the pixel shader or fragment shader stage.</p>
+<p>At this stage, multiple effects are implemented and involved and blended in. These effects are: a modified phong shader for illumination, a glowing effect of the object itself, as well as mapping the texture onto the output.</p>
+<p align="center">
+        <img src="Images/notesShader/notesmove.gif" width="500">
+        </p>
+<p align="center">
+  <em>Pixel Shader of Notes.</em>
+</p>
+<h4 id="312-shader---fragment">3.1.2. Shader - Fragment</h4>
+<p>Based on our design, the notes object should become brighter as the player walks closer towards the object, looking like an effect from a searchlight. Therefore, the looking of notes should be different while the distance between position of the player and position of notes.</p>
+<p>Therefore, for an illumination model that matches with our game’s art style, a phong shader will be most suitable, since it will first detect normal, at each vertex, linearly interpolate and apply the illumination model. This will ensure that the illumination is smooth.</p>
+<p>Here are the parameters that we pass into from a external C# script.</p>
+<p align="center">
+        <img src="Images/notesShader/notesScript.png" width="300">
+        </p>
+<p align="center">
+  <em>Script Manipulating Variables.</em>
+</p>
+<p>At initialisation, the external script will set the parameters for optimization of the phong model. Since our notes are placed at static locations, hence these parameters vary as the notes are placed at different locations within the map, and tuned by the developers for best presentation.</p>
+<pre class="hljs"><code><div>_Ka(&quot;Ka&quot;, Float)
+_Kd(&quot;Kd&quot;, Float)
+_Ks(&quot;Ks&quot;, Float)
+_fAtt(&quot;fAtt&quot;, Float)
+_specN(&quot;specN&quot;, Float)
+</div></code></pre>
+<p>The values Ka Kd Ks are constants respectively for ambience, diffusion and specular. While the fAtt is the attenuation factor and specN is the power and shininess of the light. We designed it to be shiny so that the notes can be easily identified by players. So we have a high magnitude of power of specular but not overly high so the light does not block the entire surface of the note.</p>
+<p>These</p>
+<pre class="hljs"><code><div>_PointLightColor(&quot;Point Light Color&quot;, Color)
+_PointLightPosition(&quot;Point Light Position&quot;, Vector)
+</div></code></pre>
+<p>Point Light Color refers to the color of the light model we want to create effect onto the notes paper. The external script will update the parameters in real time. The color is set to be white all the time, but the light position is set to be the position that is one level higher than the actual of the player on y axis. Since our notes are single sided only and placed on the ground, this ensures that the light is always on top of the notes, and it will affect the effect on notes.</p>
+<p>To make the effect of illumination more smoothly projected onto the notes surface, we’ve used the Blinn-Phong approximation to enhance the smoothness of the light.</p>
+<p>To create the growing effect besides the phong shader itself, we’ve modified the ambient color, using a sine wave based on the current time of game to arrange the ambient value for a glowing effect. It is dynamic, so the players can notice the “notes” easily while playing the game. There is also a minimum threshold set so that the object will not turn completely dark.</p>
+<p align="center">
+        <img src="Images/notesShader/notesMaterial.png" width="300">
+        </p>
+<p align="center">
+  <em>Material Manipulating Variables.</em>
+</p>
+<p>The following parameters are from the material to parameterise the shader.</p>
+<p>After all, we have also customly created a texture.</p>
+<pre class="hljs"><code><div>_MainTex (&quot;Texture&quot;, 2D)
+</div></code></pre>
+<p>This is imported from the unity engine by applying a texture file onto the shader file. Since it is a flat surface, we can directly apply it onto the uv coordinates without further adjustments or tiling or offset. And we merge it with the Phong shader’s output color previously implemented.</p>
+<pre class="hljs"><code><div>_Glossiness (&quot;Smoothness&quot;, Range(0,1))
+</div></code></pre>
+<p>There is also a glossiness value passed in from the unity engine on start, we also merge this into our final return color by modifying the alpha value of output color.</p>
+<p>With the vertex shader and the fragment shader, we have effectively reduced the burden of CPU since there are 15 notes scattered around the map. By allocating the tasks of displaying towards the GPU.</p>
+<p>It is also surrounded by an particle effecrt to enhance the presentation and subtleness, however this is not the particle effect will be marked on.</p>
+<h3 id="32-shader---boss-jump-attack">3.2. Shader - Boss Jump Attack</h3>
+<p><a href="https://github.com/COMP30019/project-2-undefined/blob/main/Assets/MyGame/Shaders/bossJumpShader.shader">&quot;github link to bossJumpShader&quot;</a></p>
+<p>path:
+Assets/MyGame/Shaders/bossJumpShader.shader</p>
+<p>For the second shader, the design of the shader itself involves more creative thinking and imagination. The second shader is applied onto the attacking object that the boss creates whenever performing a jump (range) attack.</p>
+<h4 id="321-vertex-shader">3.2.1. Vertex Shader</h4>
+<p>Same as the previous shader, we will first talk about the vertex shader stage of the pipeline. This time, the shader involves a external parameter passed in from a C# script, which is the time taken since the object is created.</p>
+<p align="center">
+        <img src="Images/bossShader/bossJump1.gif" width="500">
+        </p>
+<p align="center">
+  <em>Final effect of the shader.</em>
+</p>
+<p>The attack should be a circular shape, therefore, we have customly created a prefab of a circle panel using a flattened sphere.</p>
+<p align="center">
+        <img src="Images/bossShader/bossScript.png" width="300">
+        </p>
+<p align="center">
+  <em>Script Manipulating Variables.</em>
+</p>
+<p>Here is the variable that passed in by C# script and updating dynamically.</p>
+<pre class="hljs"><code><div>_instantiateTime (&quot;_instantiateTime&quot;, Range(0, 4))
+</div></code></pre>
+<p>For this particular effect, we want the player to see that the range attack is gradually expanding towards the surrounding, centered with the boss itself. Therefore, we first calculate the scale of the object to be displayed based on the time that has passed in, using the square of the value to increase the size at an increasing speed, until reaching a maximum scale.</p>
+<p align="center">
+        <img src="Images/bossShader/bossShader.gif" width="500">
+        </p>
+<p align="center">
+  <em>Displacement and scale changes.</em>
+</p>
+<p>We also want the effect to be dynamic, with part of the surface above the surface and alternating in a unique way. Therefore, we have set the y axis of the displacement to be a sum of cosine of x axis and sine of z axis, each with the instantiateTime variable passed inside. Since we are also using a square of it here, the multi-wave effect will display at an increasing speed.</p>
+<p align="center">
+        <img src="Images/bossShader/bossMVP.gif" width="500">
+        </p>
+<p align="center">
+  <em>View Space displacement.</em>
+</p>
+<p>Apart from this, we want to play to see a slightly different effect when they are moving towards different perspectives watching the plane. As discussed previously for the MVP transformation, we apply the multi-wave effects in between MV and P, which means it is manipulated in view space. Hence apart from the moving effect created by itself, as the player moves around, the effect becomes more dramatic and much more magical and significant. After the entire MVP transformation, it is output to the rasterizer stage and finally the pixel or fragment shader stage.</p>
+<h4 id="322-fragment-shader">3.2.2. Fragment Shader</h4>
+<p>To further enhance the drastic effect of the range attack circle, we create a spinning effect.</p>
+<p>We first mapping the texture towards the correct centre, which is 0.5 and 0.5. From the time variable we have passed in dynamically, we calculated both the angle of rotation and cosine angle of rotation, and created a matrix. From the offset of the mapping as well as the uv, the texture keeps getting rotated in a linear speed.</p>
+<p align="center">
+        <img src="Images/bossShader/bossMat.png" width="300">
+        </p>
+<p align="center">
+  <em>Material Manipulating Variables.</em>
+</p>
+<p>Finally using the texture we have gathered from online resources, imported into the material and applied with the shader.</p>
+<pre class="hljs"><code><div>_MainTex (&quot;Texture&quot;, 2D) 
+</div></code></pre>
+<p>We blend the rotation of spinning together with the uv mapping of the texture, create output of colour and exit the pixel shading stage.</p>
+<h3 id="33-particle-system---boss-swipe-attack">3.3. Particle System - Boss Swipe Attack</h3>
+<p>To further enhance the power of attack from the boss, as well as the visual impact of the game bringing towards the player, we’ve also implemented a particle system, using it as the weapon from the boss when it performs a remote swipe attack.</p>
+<p align="center">
+        <img src="Images/bossParticle/bossParticle.gif" width="500">
+        </p>
+<p align="center">
+  <em>Boss performing Swipe Attack.</em>
+</p>
+<p>The particle effect would effectively be a flowing blade, flying directly towards the player attempting to create damage onto the player. Therefore, the blade should be dynamic, displaying as a shape of a sector, with a matching colour style as the boss itself.</p>
+<p>In this report, we’ll specifically discuss the intuition behind the settings we have modified.</p>
+<h4 id="general">General:</h4>
+<p>Since the blade should be an object that exists constantly until reaching a maximum time of life, we set the particle effect to loop overtime. Since it is intentionally designed as a blade, setting the max particles to a high value makes the density of the particles to be enough so that players can easily notice and dodge the destructive remote attack. To further exhibit the deterrent of the attack, we want the small but dense particles to flow at a relatively fast constant speed, and each particle should begin from the centre and  disappear quickly when reaching the edge of the sector, which takes 0.2s.</p>
+<p>Also to make it look more artistic, we also allow random seeds so the particles are not exactly identical. The particles are not subjected to gravity effects due to its nature in design, so that boss is able to attack the players at various angles. The life cycle of the blade should be from instantiate to destruction, start to play the particle whenever blade is generated and ends when it is destroyed.</p>
+<p align="center">
+        <img src="Images/bossParticle/onlyParticle.gif" width="500">
+        </p>
+<p align="center">
+  <em>Particle System of blade.</em>
+</p>
+<h4 id="emission">Emission:</h4>
+<p>As mentioned earlier about the density of the particle system, we set the rate over time of emission to be very high to achieve this outcome.</p>
+<h4 id="shape">Shape:</h4>
+<p>Based on the scale of the boss model, we’ve tuned the radius of the shape, arc, and rotation to ensure that whenever the boss performs a swipe attack, the direction of the blade is always towards the player, with a suitable size that matches with animation and scale of the boss itself. To form a sector or a blade, the shape is extracted from a sphere with a small arc, removing the central portion of the sphere.</p>
+<h4 id="velocity-color-and-size-over-time">Velocity, Color, and Size over time:</h4>
+<p>As the particle reaches the edges of the sector, it moves slower over time. To explicitly expose the expressiveness of this action, the colour of each particle gradually changes from a light blue colour towards a white colour, that matches with the colour tone of the boss’ arm with a blade. The white colour at the edge demonstrates the sharpness of the blade, while the blue part displays the powerfulness. The impact is strengthened as the size of each particle decreases over time.</p>
+<h4 id="noise">Noise:</h4>
+<p>To make the blades thicker, we also attached the particle effect with randomness by adding noise factors. To preserve the sector shape of the particle system, we set a relatively small strength and frequency.</p>
+<p align="center">
+        <img src="Images/bossParticle/lightParticle.gif" width="500">
+        </p>
+<p align="center">
+  <em>Light Effect of Particle System.</em>
+</p>
+<h4 id="lights">Lights:</h4>
+<p>For a greater global impact and graphics within the game, we also attach some of the point lights within the particle system. Therefore, when reaching onto a wall, the shininess of the effect passing through will be displayed on walls. To not make it overly flashy or contain high exposure, we set the intensity range and ratio to be default of 1. This also makes sure that the game’s performance in terms of refresh rate does not drop significantly.</p>
+<p>For the renderer, we’ve selected the default settings, for purposes of preserving best performance across various computers. The shadows are switched off, since its design and existence does not follow realism.</p>
+<h2 id="4-summary-of-contributions">4. Summary of Contributions</h2>
+<p>Yilu Wang</p>
+<ul>
+<li>Enemy animation and logic</li>
+<li>Boss animation and logic</li>
+<li>Timer logic</li>
+<li>Analysis on interview data &amp; evaluation plan finalization</li>
+</ul>
+<p>Wancheng Tang</p>
+<ul>
+<li>Player logic</li>
+<li>Bullet and gun animation and logic</li>
+<li>UI</li>
+<li>Analysis on post-task walkthrough data</li>
+</ul>
+<p>Tianxi Chen</p>
+<ul>
+<li>Setting up the scene</li>
+<li>Special visual effects and sound effects</li>
+<li>Lore notes design and implementation</li>
+<li>Shader and particle system evaluation</li>
+</ul>
+<p>Hao Xu</p>
+<ul>
+<li>Crate animation and logic</li>
+<li>Potion animation and logic</li>
+<li>AI NavMeshAgent</li>
+<li>Diagrams for the report</li>
+</ul>
+<p>Above is a rough summary of the primary responsibilities of each team member during development.</p>
+<p>But thanks to the whole team for contributing to the discussion during meetings and helping each other throughout.</p>
+<p>This is a work of the teams instead of the combination of separate works of each team member. <img class="emoji" alt="smiley" src="data:image/png;base64,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" /></p>
+<h2 id="5-references-and-external-resources">5. References and External Resources</h2>
+<p>[1] https://www.cleanpng.com/png-walker-s-revenge-bullet-metal-bullet-holes-805148/</p>
+<p>[2] https://www.cleanpng.com/png-white-symmetry-structure-pattern-vector-shot-trans-453234/</p>
+<p>[3] https://assetstore.unity.com/packages/3d/characters/minotaur1-196863</p>
+<p>[4] https://www.mixamo.com/#/?page=1&amp;type=Character</p>
+<p>[5] https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-construction-kit-modular-159280</p>
+<p>[6] https://assetstore.unity.com/packages/audio/ambient/sci-fi/sci-fi-alarm-sfx-238043</p>
+<p>[7] https://assetstore.unity.com/packages/audio/sound-fx/classic-footstep-sfx-173668</p>
+<p>[8] https://assetstore.unity.com/packages/audio/sound-fx/foley/door-cabinets-lockers-free-257610</p>
+<p>[9] https://assetstore.unity.com/packages/audio/ambient/sci-fi/sci-fi-ambiant-power-174139</p>
+<p>[10] https://assetstore.unity.com/packages/3d/props/guns/sample-low-poly-guns-pack-207957</p>
+<p>[11] https://assetstore.unity.com/packages/3d/props/food/health-potion-bottle-set-204920</p>
+<p>[12] https://assetstore.unity.com/packages/3d/nextgen-sci-fi-crate-45877</p>
+<p>[13] https://www.bing.com/images/search?view=detailV2&amp;ccid=t6XVmwuM&amp;id=9D4B3E61164A11736FC3076C6A38A4482B30626D&amp;thid=OIP.t6XVmwuM1vmTmpz11ktvjwHaEK&amp;mediaurl=https%3a%2f%2fimages3.alphacoders.com%2f109%2f1092510.jpg&amp;exph=2160&amp;expw=3840&amp;q=robot+in+scifi+experiment&amp;simid=608045362569430795&amp;FORM=IRPRST&amp;ck=98606F7DB3EED41FC3BF13BF66F9B35D&amp;selectedIndex=24&amp;ajaxhist=0&amp;ajaxserp=0</p>
+<p>[14] https://pixabay.com/sound-effects/</p>
+<p>[15] https://assetstore.unity.com/packages/audio/music/cinematic-trailer-music-collection-240943</p>
+<p>[16] https://assetstore.unity.com/packages/audio/music/absolute-space-sci-fi-music-free-sample-103274</p>
+<p>[17] https://588ku.com/ycpng/13385578.html</p>
+<p>[18] https://588ku.com/ycpng/13347983.html</p>
+<p>[19] https://588ku.com/ycpng/13378576.html</p>
+<p>[20] https://www.fontspace.com/</p>
+<p>[21] https://www.flaticon.com/free-icon/</p>
+
+</body>
+</html>
