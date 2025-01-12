@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXP-7X42 - Design</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <img src="assets/logo.png" alt="EXP-7X42 Logo" class="logo">
+        <div class="nav-links">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="design.html" class="nav-item">Design</a>
+            <a href="report.html" class="nav-item">Report</a>
+        </div>
+    </div>
+
+    <!-- Design Page Content -->
+    <div class="content design">
+        <h1 class="page-title">Game Design</h1>
+        <div class="document-container big-document">
+            <!-- The converted Markdown content will appear here -->
+            <div id="gdd-content"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 UNDEFINED. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to fetch and convert the GDD.md file
+        fetch('GDD.md')
+            .then(response => response.text())
+            .then(data => {
+                // Convert Markdown to HTML using Marked.js
+                document.getElementById('gdd-content').innerHTML = marked(data);
+            })
+            .catch(err => console.log(err));
+    </script>
+</body>
+</html>

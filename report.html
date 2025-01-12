@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXP-7X42 - Report</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <img src="assets/logo.png" alt="EXP-7X42 Logo" class="logo">
+        <div class="nav-links">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="design.html" class="nav-item">Design</a>
+            <a href="report.html" class="nav-item">Report</a>
+        </div>
+    </div>
+
+    <!-- Report Page Content -->
+    <div class="content report">
+        <h1 class="page-title">Game Report</h1>
+        <div class="document-container big-document">
+            <!-- This is where the converted Markdown will appear -->
+            <div id="report-content"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 EXP-7X42. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to fetch and convert the README.md file
+        fetch('README.md')
+            .then(response => response.text())
+            .then(data => {
+                // Convert the Markdown data to HTML using Marked.js
+                document.getElementById('report-content').innerHTML = marked(data);
+            })
+            .catch(err => console.log(err));
+    </script>
+</body>
+</html>
